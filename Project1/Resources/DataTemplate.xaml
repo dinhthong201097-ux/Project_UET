@@ -1,0 +1,27 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:view="clr-namespace:UII.View"
+    xmlns:vm="clr-namespace:UII.ViewModel">
+    <DataTemplate DataType="{x:Type vm:HomeVM}">
+        <view:HomeView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:TeachingVM}">
+        <view:TeachingView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:InterfaceVM}">
+        <view:InterfaceView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:DataVM}">
+        <view:DataView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:HistoryVM}">
+        <view:HistoryView />
+    </DataTemplate>
+
+
+</ResourceDictionary>

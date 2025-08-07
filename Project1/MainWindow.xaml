@@ -1,0 +1,230 @@
+﻿<Window x:Class="UII.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:UII"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:UII.ViewModel"
+        xmlns:views="clr-namespace:UII.View"
+        xmlns:viewmodels="clr-namespace:UII.ViewModel"
+        Title="MainWindow"
+        Width="1280"
+        Height="720"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        
+        mc:Ignorable="d">
+
+    <Window.DataContext>
+        <vm:NavigationVM />
+    </Window.DataContext>
+    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewmodels:TeachingVM}">
+            <views:TeachingView/>
+        </DataTemplate>
+
+    </Window.Resources>
+    <Border x:Name="bodMainFrame"
+            Background="#EFEFEF"
+            BorderBrush="White"
+            BorderThickness="0.5"
+            CornerRadius="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--  Menu  -->
+            <Border Background="#22223B"
+                    CornerRadius="10 0 0 10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="120" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Vertical">
+                        <Image Grid.Row="0"
+                               Width="60"
+                               Height="60"
+                               Margin="0,10,0,0"
+                               Source="/Images/cheburashka_100px.png" />
+                        <TextBlock Margin="0,10,0,0"
+                                   HorizontalAlignment="Center"
+                                   FontFamily="Segoe UI"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   Text="SAMSUNG" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1"
+                                Margin="0"
+                                Orientation="Vertical">
+
+                        <!--  Home  -->
+                        <RadioButton Width="70"
+                                     Height="70"
+                                     Margin="0,10"
+                                     Command="{Binding HomeCommand}"
+                                     Style="{StaticResource MenuButton}"
+                                     IsChecked="True">
+                            <Image Width="50"
+                                   Source="/Images/home_100px.png" />
+                        </RadioButton>
+
+                        <!--  Teaching  -->
+                        <RadioButton Width="70"
+                                     Height="70"
+                                     Margin="0,10"
+                                     Command="{Binding TeachingCommand}"
+                                     Style="{StaticResource MenuButton}">
+                            <Image Width="50"
+                                   Source="/Images/eye_100px.png" />
+                        </RadioButton>
+
+                        <!--  Interface  -->
+                        <RadioButton Width="70"
+                                     Height="70"
+                                     Margin="0,10"
+                                     Command="{Binding InterfaceCommand}"
+                                     Style="{StaticResource MenuButton}">
+                            <Image Width="50"
+                                   Source="/Images/connect_100px.png" />
+                        </RadioButton>
+
+                        <!--  Data  -->
+                        <RadioButton Width="70"
+                                     Height="70"
+                                     Margin="0,10"
+                                     Command="{Binding DataCommand}"
+                                     Style="{StaticResource MenuButton}">
+                            <Image Width="50"
+                                   Source="/Images/cloud_100px.png" />
+                        </RadioButton>
+
+                        <!--  History  -->
+                        <RadioButton Width="70"
+                                     Height="70"
+                                     Margin="0,10"
+                                     Command="{Binding HistoryCommand}"
+                                     Style="{StaticResource MenuButton}">
+                            <Image Width="50"
+                                   Source="/Images/time_search_100px.png" />
+                        </RadioButton>
+
+                    </StackPanel>
+                    <Button VerticalAlignment="Bottom"
+                            Grid.Row="1"
+                            Width="50"
+                            Height="50"
+                            Margin="0 0 0 20"
+                            Command="{Binding ShutdownCommand}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Image x:Name="imgShutdown"
+                                           Source="/Images/shutdown_100px_OFF.png" />
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver"
+                                             Value="True">
+                                        <Setter TargetName="imgShutdown"
+                                                Property="Source"
+                                                Value="/Images/shutdown_100px_ON.png" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+            </Border>
+
+            <!--  View  -->
+            <Grid Grid.Column="1">
+                <DockPanel LastChildFill="True">
+                    <Border DockPanel.Dock="Top"
+                            Height="60"
+                            CornerRadius="0 10 0 0"
+                            Background="White">
+                        <DockPanel LastChildFill="True">
+                            <StackPanel Margin="30,0,0,0"
+                                        DockPanel.Dock="Left"
+                                        Orientation="Horizontal">
+                                <Grid>
+                                    <Button Background="Transparent"
+                                            BorderThickness="0"
+                                            Click="btnLoginClick">
+                                        <Grid>
+
+                                            <Ellipse Width="50"
+                                                     Height="50"
+                                                     VerticalAlignment="Center"
+                                                     Fill="Gray" />
+                                            <Rectangle Width="45"
+                                                       Height="45"
+                                                       VerticalAlignment="Center">
+                                                <Rectangle.Fill>
+                                                    <ImageBrush ImageSource="/Images/login_user_100px.png"
+                                                                Stretch="Uniform" />
+                                                </Rectangle.Fill>
+                                            </Rectangle>
+                                        </Grid>
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <ContentPresenter />
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </Grid>
+
+                                <StackPanel Margin="10,0"
+                                            VerticalAlignment="Center"
+                                            DockPanel.Dock="Right"
+                                            Orientation="Vertical">
+                                    <TextBlock x:Name="lbAccessLevel"
+                                               HorizontalAlignment="Center"
+                                               FontFamily="Segoe UI"
+                                               FontSize="24"
+                                               FontWeight="Bold"
+                                               Text="None" />
+                                    <TextBlock x:Name="lbRemainTime"
+                                               Margin="0,0,00,0"
+                                               HorizontalAlignment="Center"
+                                               FontFamily="Segoe UI"
+                                               FontSize="14"
+                                               FontWeight="Bold"
+                                               Text="00:00:00" />
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Margin="60,0"
+                                        VerticalAlignment="Center"
+                                        DockPanel.Dock="Right"
+                                        Orientation="Vertical">
+                                <TextBlock x:Name="lbDate"
+                                           HorizontalAlignment="Center"
+                                           FontFamily="Segoe UI"
+                                           FontSize="24"
+                                           FontWeight="Bold"
+                                           Text="31/07/2025" />
+                                <TextBlock x:Name="lbTime"
+                                           HorizontalAlignment="Center"
+                                           FontFamily="Segoe UI"
+                                           FontSize="24"
+                                           FontWeight="Bold"
+                                           Text="00:00:00" />
+                            </StackPanel>
+                            <TextBlock />
+                        </DockPanel>
+                    </Border>
+                    <ContentControl x:Name="Page"
+                                    DockPanel.Dock="Top"
+                                    Content="{Binding CurrentView}" />
+                </DockPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
